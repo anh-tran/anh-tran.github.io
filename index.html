@@ -1,5 +1,179 @@
-<html>
-  <body>
-    Hallo!
-  </body>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background: transparent;
+            /* Make it white if you need */
+            color: white;
+            padding: 0 24px;
+            max-width: 30%;
+            margin: 0 auto;
+            height: 100vh;
+            display: block;
+            text-align: center;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+        ._ {
+            background-color: #000000;
+            color: white;
+        }
+
+        .H {
+            background-color: #FF0000;
+            color: white;
+        }
+
+        .A {
+            background-color: #00FF00;
+            color: white;
+        }
+
+        .HA {
+            background-color: #FFFF00;
+            color: black;
+        }
+
+        .T {
+            background-color: #0000FF;
+            color: white;
+        }
+
+        .HT {
+            background-color: #FF00FF;
+            color: black;
+        }
+
+        .AT {
+            background-color: #00FFFF;
+            color: black;
+        }
+
+        .HAT {
+            background-color: #FFFFFF;
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 id="header"></h1>
+    <p id="tiet"></p>
+    <p id="thi"></p>
+    <p id="canh"></p>
+
+    <script src="./amlich-aa98.js"></script>
+    <script>
+        const message = 'Hello world'; // Try edit me
+
+        let dt = new Date();
+
+        let mon = dt.getMonth() + 1;
+        if (dt.getDay() > 15) mon += 1;
+        switch (mon) {
+            case 12:
+            case 1:
+                tiet = "T";
+                break;
+            case 2:
+                tiet = "HA";
+                break;
+            case 3:
+            case 4:
+                tiet = "AT";
+                break;
+            case 5:
+                tiet = "HT";
+                break;
+            case 6:
+            case 7:
+                tiet = "H";
+                break;
+            case 8:
+                tiet = "HAT";
+                break;
+            case 9:
+            case 10:
+                tiet = "A";
+                break;
+            default:
+                tiet = "_";
+                break;
+        }
+
+        let lunar = convertSolar2Lunar(dt.getDate(), dt.getMonth() + 1, dt.getFullYear(), 0);
+        let amlich = `${lunar[0]}/${lunar[1]}${lunar[3] ? "N" : ""} AL`;
+        let th = Math.floor((lunar[0] - 1) / 4);
+        switch (th) {
+            case 0:
+                thi = "H";
+                break;
+            case 1:
+                thi = "AT";
+                break;
+            case 2:
+                thi = "HAT";
+                break;
+            case 3:
+                thi = "A";
+                break;
+            case 4:
+                thi = "HT";
+                break;
+            case 5:
+                thi = "HA";
+                break;
+            case 6:
+                thi = "T";
+                break;
+            default:
+                thi = "_";
+                break;
+        }
+
+        let c = Math.floor((dt.getHours() * 60 + dt.getMinutes() + 90) / 180) % 8;
+        switch (c) {
+            case 0:
+                canh = "T";
+                break;
+            case 1:
+                canh = "A";
+                break;
+            case 2:
+                canh = "HAT";
+                break;
+            case 3:
+                canh = "H";
+                break;
+            case 4:
+                canh = "HT";
+                break;
+            case 5:
+                canh = "AT";
+                break;
+            case 6:
+                canh = "HA";
+                break;
+            default:
+                canh = "_";
+                break;
+        }
+
+        document.querySelector('#tiet').innerHTML = dt.toLocaleDateString('sv-SE');
+        document.querySelector('#tiet').classList.add(tiet);
+        document.querySelector('#thi').innerHTML = amlich;
+        document.querySelector('#thi').classList.add(thi);
+        document.querySelector('#canh').innerHTML = dt.toLocaleTimeString();
+        document.querySelector('#canh').classList.add(canh);
+
+        // Log to console
+        console.log(message);
+
+    </script>
+</body>
+
 </html>
