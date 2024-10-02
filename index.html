@@ -105,7 +105,7 @@
                 break;
         }
 
-        let lunar = convertSolar2Lunar(dt.getDate(), dt.getMonth() + 1, dt.getFullYear(), 0);
+        let lunar = convertSolar2Lunar(dt.getDate(), dt.getMonth() + 1, dt.getFullYear(), 7);
         let amlich = `${lunar[0]}/${lunar[1]}${lunar[3] ? "N" : ""} AL`;
         let th = Math.floor((lunar[0] - 1) / 4);
         switch (th) {
